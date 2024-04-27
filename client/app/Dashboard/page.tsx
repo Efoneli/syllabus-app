@@ -2,7 +2,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div>courses</div>
+    <div>this is the dashboard</div>
   )
 }
 
