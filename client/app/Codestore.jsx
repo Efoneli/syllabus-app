@@ -514,3 +514,50 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+// app/api/[...courses]
+
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+interface Course {
+    id: number;
+    title: string;
+    description: string;
+  }
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Course[]>,
+) {
+  const url = 'http://localhost:3000/api/courses'; // Replace with your API base URL
+const method = 'GET';
+
+  fetch(url, { method }).then((res) => res.json()).then((data) => {
+    res.status(200).json(data);
+  });
+}
+
+//app/api/[id].ts
+
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+interface Course {
+    id: number;
+    title: string;
+    description: string;
+  }
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Course>,
+) {
+  const url = `http://localhost:3030/api/courses/${req.query.id}`; // Replace with your API base URL
+const method = 'GET';
+
+  fetch(url, { method }).then((res) => res.json()).then((data) => {
+    res.status(200).json(data);
+  });
+}
+
+
