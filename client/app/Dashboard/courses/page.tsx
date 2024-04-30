@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {useRouter} from 'next/navigation'
 
 interface Course {
   id: number;
@@ -11,6 +12,8 @@ interface Course {
 }
 
 export default function Courses() {
+const router = useRouter()
+
   const [courses, setCourses] = useState<Course[]>([]);
   const [newCourseTitle, setNewCourseTitle] = useState<string>("");
   const [newCourseDescription, setNewCourseDescription] = useState<string>("");
@@ -33,35 +36,41 @@ export default function Courses() {
     fetchData();
   }, []);
 
-  const handleAddCourse = async () => {
-    try {
-      const response = await axios.post<Course>(
-        "http://localhost:3030/courses",
-        {
-          title: newCourseTitle,
-          description: newCourseDescription,
-          prerequisites: newCoursePrerequisites,
-        }
-      );
+  // const handleAddCourse = async () => {
+  //   try {
+  //     const response = await axios.post<Course>(
+  //       "http://localhost:3030/courses",
+  //       {
+  //         title: newCourseTitle,
+  //         description: newCourseDescription,
+  //         prerequisites: newCoursePrerequisites,
+  //       }
+  //     );
 
-      const newCourseData: Course = response.data;
-      setCourses([...courses, newCourseData]);
-      setNewCourseTitle("");
-      setNewCourseDescription("");
-      setNewCoursePrerequisites("");
-    } catch (error) {
-      console.error("Error adding course:", error);
-    }
-  };
+  //     const newCourseData: Course = response.data;
+  //     setCourses([...courses, newCourseData]);
+  //     setNewCourseTitle("");
+  //     setNewCourseDescription("");
+  //     setNewCoursePrerequisites("");
+  //   } catch (error) {
+  //     console.error("Error adding course:", error);
+  //   }
+  // };
 
-  const handleDeleteCourse = async (id: number) => {
-    try {
-      await axios.delete(`http://localhost:3030/courses/${id}`);
-      setCourses(courses.filter((course) => course.id !== id));
-    } catch (error) {
-      console.error("Error deleting course:", error);
-    }
-  };
+  // const handleDeleteCourse = async (id: number) => {
+  //   try {
+  //     await axios.delete(`http://localhost:3030/courses/${id}`);
+  //     setCourses(courses.filter((course) => course.id !== id));
+  //   } catch (error) {
+  //     console.error("Error deleting course:", error);
+  //   }
+  // };
+
+  
+const handleCourseClick = (id: number) => {
+  // Navigate to the course detail page when a course is clicked
+  router.push(`/courses/${id}`);
+};
 
   // const handleEditCourse = async (id: number) => {
   //   try {
@@ -87,7 +96,7 @@ export default function Courses() {
 
   return (
     <div className="p-4 px-4">
-      <div className="flex flex-col md:flex-row">
+      {/* <div className="flex flex-col md:flex-row">
         <input
           type="text"
           placeholder="Course Title"
@@ -115,12 +124,13 @@ export default function Courses() {
         >
           Add a course
         </button>
-      </div>
+      </div> */}
       <h1 className="text-start text-4xl pb-4">List of available courses</h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {courses.map((course) => (
           <div
             key={course.id}
+            onClick={() => handleCourseClick(course.id)}
             className="border-2 border-r-gray-100 rounded-md p-6 mx-auto hover:scale-105"
           >
             <div>
@@ -131,12 +141,12 @@ export default function Courses() {
                 Edit
               </button> */}
 
-              <button
+              {/* <button
                 onClick={() => handleDeleteCourse(course.id)}
                 className="bg-red-500 text-white p-1 rounded text-end"
               >
                 Delete
-              </button>
+              </button> */}
             </div>
 
             <h3 className="p-3 text-3xl text-center">{course.title}</h3>

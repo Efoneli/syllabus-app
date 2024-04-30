@@ -23,7 +23,7 @@ function Navbar({ children }: NavbarProps) {
 
   return (
     <div>
-      <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full bg-gray-800 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start rtl:justify-end">
@@ -107,15 +107,15 @@ function Navbar({ children }: NavbarProps) {
         id="logo-sidebar"
         className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+        } bg-gray-900 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+        <div className="h-full px-3 pb-4 overflow-y-auto bg-gray-900 text-gray-100 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             <li>
               <Link
                 href='/Dashboard'
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
               <DashboardSvg />
                 <span className="ms-3">Dashboard</span>
@@ -125,7 +125,7 @@ function Navbar({ children }: NavbarProps) {
             <li>
               <Link
                 href="/inbox"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <InboxSvg />
                 <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
@@ -137,7 +137,7 @@ function Navbar({ children }: NavbarProps) {
             <li>
               <Link
                 href="schedule"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
               <ScheduleSvg />
                 <span className="flex-1 ms-3 whitespace-nowrap">Schedule</span>
@@ -146,7 +146,7 @@ function Navbar({ children }: NavbarProps) {
             <li>
               <Link
                 href="/Dashboard/courses"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                <CourseSvg />
                 <span className="flex-1 ms-3 whitespace-nowrap">Courses</span>
@@ -155,7 +155,7 @@ function Navbar({ children }: NavbarProps) {
             <li>
               <Link
                 href="/assignments"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <AssignmentSvg />
                 <span className="flex-1 ms-3 whitespace-nowrap">Assignments</span>
@@ -164,7 +164,7 @@ function Navbar({ children }: NavbarProps) {
             <li>
               <Link
                 href="grade"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                <GradeSvg />
                 <span className="flex-1 ms-3 whitespace-nowrap">Grade</span>
