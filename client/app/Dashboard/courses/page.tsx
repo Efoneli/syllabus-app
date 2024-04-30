@@ -1,17 +1,21 @@
-"use client";
+'use client'
 
 import { useEffect, useState } from "react";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
 interface Course {
   id: number;
   title: string;
   description: string;
+  prerequisites: string;
 }
 
 export default function Courses() {
   const [courses, setCourses] = useState<Course[]>([]);
-  const [newCourse, setNewCourse] = useState<string>("");
+  const [newCourseTitle, setNewCourseTitle] = useState<string>("");
+  const [newCourseDescription, setNewCourseDescription] = useState<string>("");
+  const [newCoursePrerequisites, setNewCoursePrerequisites] =
+    useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,26 +38,76 @@ export default function Courses() {
       const response = await axios.post<Course>(
         "http://localhost:3030/courses",
         {
-          title: newCourse,
-          description: "New Course Description",
+          title: newCourseTitle,
+          description: newCourseDescription,
+          prerequisites: newCoursePrerequisites,
         }
       );
-      setCourses([...courses, response.data]);
-      setNewCourse("");
+
+      const newCourseData: Course = response.data;
+      setCourses([...courses, newCourseData]);
+      setNewCourseTitle("");
+      setNewCourseDescription("");
+      setNewCoursePrerequisites("");
     } catch (error) {
       console.error("Error adding course:", error);
     }
   };
 
+  const handleDeleteCourse = async (id: number) => {
+    try {
+      await axios.delete(`http://localhost:3030/courses/${id}`);
+      setCourses(courses.filter((course) => course.id !== id));
+    } catch (error) {
+      console.error("Error deleting course:", error);
+    }
+  };
+
+  // const handleEditCourse = async (id: number) => {
+  //   try {
+  //     const updatedCourseData: Partial<Course> = {
+  //       title: newCourseTitle,
+  //       description: newCourseDescription,
+  //       prerequisites: newCoursePrerequisites,
+  //     };
+
+  //     await axios.patch(`http://localhost:3030/courses/${id}`, updatedCourseData);
+
+  //     // Optionally, you can fetch the updated course list after editing
+  //     const updatedCourses = await axios.get<Course[]>("http://localhost:3030/courses");
+  //     setCourses(updatedCourses.data);
+
+  //     setNewCourseTitle("");
+  //     setNewCourseDescription("");
+  //     setNewCoursePrerequisites("");
+  //   } catch (error) {
+  //     console.error("Error editing course:", error);
+  //   }
+  // };
+
   return (
     <div className="p-4 px-4">
-      <div>
+      <div className="flex flex-col md:flex-row">
         <input
           type="text"
-          placeholder="Add a course here"
-          value={newCourse}
-          onChange={(e) => setNewCourse(e.target.value)}
-          className="text-gray-600 p-2 rounded-l-md"
+          placeholder="Course Title"
+          value={newCourseTitle}
+          onChange={(e) => setNewCourseTitle(e.target.value)}
+          className="text-gray-600 p-2 mx-3 rounded-l-md"
+        />
+        <input
+          type="text"
+          placeholder="Course Description"
+          value={newCourseDescription}
+          onChange={(e) => setNewCourseDescription(e.target.value)}
+          className="text-gray-600 p-2"
+        />
+        <input
+          type="text"
+          placeholder="Course Prerequisites"
+          value={newCoursePrerequisites}
+          onChange={(e) => setNewCoursePrerequisites(e.target.value)}
+          className="text-gray-600 p-2 mx-2 rounded-r-md"
         />
         <button
           onClick={handleAddCourse}
@@ -69,8 +123,27 @@ export default function Courses() {
             key={course.id}
             className="border-2 border-r-gray-100 rounded-md p-6 mx-auto hover:scale-105"
           >
-            <h3 className="p-6 text-2xl text-center">{course.title}</h3>
-            <p className="p-4 text-lg text-center">{course.description}</p>
+            <div>
+              {/* <button
+                onClick={() => handleEditCourse(course.id)}
+                className="bg-green-500 text-white p-1 rounded text-end"
+              >
+                Edit
+              </button> */}
+
+              <button
+                onClick={() => handleDeleteCourse(course.id)}
+                className="bg-red-500 text-white p-1 rounded text-end"
+              >
+                Delete
+              </button>
+            </div>
+
+            <h3 className="p-3 text-3xl text-center">{course.title}</h3>
+            <p className="p-2 text-lg text-center">{course.description}</p>
+            <p className="pt-6 text-sm text-center">
+              Pre-requisite: {course.prerequisites}
+            </p>
           </div>
         ))}
       </div>
