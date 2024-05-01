@@ -10,4 +10,6 @@ export class Coursedetail extends AbstractEntity<Coursedetail> {
   @Column()
   body: string;
 
+ @Column()
+  courseId: number;
 }
