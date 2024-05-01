@@ -9,7 +9,7 @@ React is a JavaScript library for building user interfaces, developed by Faceboo
 <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt='nest' className="" />
 
 <div className="mt-4">
-<a href={"https://reactjs.org/docs/getting-started.html"} target="_blank" rel="noopener noreferrer" className="text-blue-500 font-semibold hover:underline">Documentation</a>
+<a href="https://reactjs.org/docs/getting-started.html" target="_blank" rel="noopener noreferrer" className="text-blue-500 font-semibold hover:underline">Documentation</a>
 <br />
 <iframe src='https://www.youtube.com/watch?v=DLX62G4lc44' width={1000} height={500} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full">Video Tutorial</iframe>
 

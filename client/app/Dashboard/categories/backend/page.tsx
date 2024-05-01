@@ -5,25 +5,28 @@ const backendLanguages = [
     {
       "title": "NestJS",
       "link": '/Dashboard/categories/backend/nest',
-      "prerequisites": "Node js, JS"
+      "prerequisites": "Node js, JS",
       "linkToDocs": "https://docs.nestjs.com/",
       "imageUrl": "https://nestjs.com/img/logo_text.svg",
     },
     {
       "title": "Express.js",
       "link": '/Dashboard/categories/backend/nest',
+            "prerequisites": "Node js, JS",
       "linkToDocs": "https://expressjs.com/",
       "imageUrl": "https://expressjs.com/images/express-facebook-share.png",
     },
     {
       "title": "Django",
       "link": '/Dashboard/categories/backend/nest',
+            "prerequisites": "Node js, JS",
       "linkToDocs": "https://docs.djangoproject.com/en/3.2/",
       "imageUrl": "https://www.djangoproject.com/s/img/logos/django-logo-negative.png",
     },
     {
       "title": "Node.js",
       "link": '/Dashboard/categories/backend/nest',
+            "prerequisites": "Node js, JS",
       "linkToDocs": "https://nodejs.org/en/docs/",
       "imageUrl": "https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg",
     }

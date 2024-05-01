@@ -5,7 +5,7 @@ export default function Page () {
         {
           "title": "React",
           "link": '/Dashboard/categories/frontend/react',
-          "prerequisites": "JavaScript"
+          "prerequisites": "JavaScript",
           "linkToDocs": "https://reactjs.org/docs/getting-started.html",
           "videoUrl": "https://www.youtube.com/watch?v=DLX62G4lc44",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg",
@@ -14,7 +14,7 @@ export default function Page () {
         {
           "title": "Next.js",
                     "link": '/Dashboard/categories/frontend/react',
-                    "prerequisites": "JS, React"
+                    "prerequisites": "JS, React",
           "linkToDocs": "https://nextjs.org/docs/getting-started",
           "videoUrl": "https://www.youtube.com/watch?v=1g0VuNfrG4o",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg",
@@ -23,7 +23,7 @@ export default function Page () {
         {
           "title": "Vue.js",
                     "link": '/Dashboard/categories/frontend/react',
-                    "prerequisites": "JS"
+                    "prerequisites": "JS",
           "linkToDocs": "https://vuejs.org/v2/guide/",
           "videoUrl": "https://www.youtube.com/watch?v=4deVCNJq3qc",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Vue.js_Logo.svg",
@@ -32,7 +32,7 @@ export default function Page () {
         {
           "title": "Tailwind CSS",
                     "link": '/Dashboard/categories/frontend/react',
-                    "prerequisites": "CSS"
+                    "prerequisites": "CSS",
           "linkToDocs": "https://tailwindcss.com/docs",
           "videoUrl": "https://www.youtube.com/watch?v=QjZIeA952jE",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/46/Logo_Tailwind_CSS.svg",
@@ -40,20 +40,15 @@ export default function Page () {
         }
       ]
       
-  
-
     return(
-        
-
 <div className='p-6'>
 <h1 className='text-3xl mb-4'>frontend Languages</h1>
 
 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 {frontendLang.map((language, index) => (
-    <div className='border rounded-md p-6'> 
-    <img src={language.imageUrl} alt={language.title}  height={200} width={200} className="" />
-
-<Link href={language.link} key={index} className="">
+<div className='border rounded-md p-6'> 
+<img src={language.imageUrl} alt={language.title}  height={200} width={200} className="" />
+<Link href={language.link} className="">
 <h2 className="text-xl text-white font-semibold mb-2">{language.title}</h2>
 <p className="text-gray-700">{language.prerequisites}</p>
 

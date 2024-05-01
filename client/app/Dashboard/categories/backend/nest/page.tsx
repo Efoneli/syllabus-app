@@ -39,16 +39,15 @@ export default function Nest() {
       <h2 className="text-3xl font-semibold mb-2">NestJS</h2>
 
       <p className="text-gray-400 text-xl">
-      Nest (NestJS) is a framework for building efficient, scalable Node.js server-side applications. It uses TypeScript and is heavily inspired by Angular.
+      Nest (NestJS) is a framework for building efficient, scalable Node.js server-side applications. It uses TypeScript and is heavily inspired by Angular The video  below will teach you the core basics of Nest and how to integrate it with typeorm.
         </p>
         <img src="https://nestjs.com/img/logo_text.svg" alt='nest' className="mt-4 mx-auto max-w-full" />
 
       <div className="mt-4">
-        <a href={"https://docs.nestjs.com/"} target="_blank" rel="noopener noreferrer" className="text-blue-500 font-semibold hover:underline">Documentation</a>
+        <p> click here for docs</p>
+        <span><a href="https://docs.nestjs.com/" target="_blank" rel="noopener noreferrer" className=" my-6 text-blue-500 font-semibold hover:underline">Documentation</a></span>
         <br />
-        <iframe src='https://www.youtube.com/watch?v=4xyLmIcxvX4' width={1000} height={500} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture full">Video Tutorial</iframe>
-
-      </div>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/9MGKKJTwicM?si=h7cL1xRx5VGoRnSl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>      </div>
 
 
     </div>
