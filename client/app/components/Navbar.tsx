@@ -13,13 +13,26 @@ interface NavbarProps {
 function Navbar({ children }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
   };
+
+  const toggleCategoryMenu = () => {
+    setIsCategoryOpen(!isCategoryOpen);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    toggleCategoryMenu(); // Close the category dropdown after selecting an option
+  };
+
 
   return (
     <div>
@@ -143,15 +156,74 @@ function Navbar({ children }: NavbarProps) {
                 <span className="flex-1 ms-3 whitespace-nowrap">Schedule</span>
               </Link>
             </li>
+         
+         
             <li>
-              <Link
-                href="/Dashboard/courses"
-                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              <div
+                onClick={toggleCategoryMenu}
+                className="flex items-center p-2 text-gray-200 rounded-lg dark:text-white group cursor-pointer"
               >
-               <CourseSvg />
-                <span className="flex-1 ms-3 whitespace-nowrap">Courses</span>
-              </Link>
+                <CourseSvg />
+                <span className="flex-1 ms-3 whitespace-nowrap">
+                  Categories
+                </span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-5 w-5 transition-transform ${
+                    isCategoryOpen ? "rotate-90" : ""
+                  }`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M6.293 7.293a1 1 0 011.414 0L10 9.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              {/* Dropdown menu for categories */}
+              <ul
+                className={`${
+                  isCategoryOpen ? "block" : "hidden"
+                } space-y-2 ml-3`}
+              >
+                <li>
+                  <Link
+                    href="/Dashboard/categories/frontend"
+                    passHref
+              
+                      onClick={() => handleCategoryChange("frontend")}
+                      className="block px-4 py-2 text-sm text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-600"
+                    >
+                      Frontend
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/Dashboard/categories/backend"
+                    passHref
+                 
+                      onClick={() => handleCategoryChange("backend")}
+                      className="block px-4 py-2 text-sm text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-600"
+                    >
+                      Backend
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/Dashboard/categories/mobile"
+                    passHref
+                 
+                      onClick={() => handleCategoryChange("mobile")}
+                      className="block px-4 py-2 text-sm text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-600"
+                    >
+                      Mobile
+                  </Link>
+                </li>
+              </ul>
             </li>
+
             <li>
               <Link
                 href="/assignments"
