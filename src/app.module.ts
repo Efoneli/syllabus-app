@@ -8,6 +8,8 @@ import { ProjectsModule } from './projects/projects.module';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { CoursedetailsModule } from './coursedetails/coursedetails.module';
+import { CategoriesModule } from './categories/categories.module';
+import { TopicsModule } from './topics/topics.module';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { CoursedetailsModule } from './coursedetails/coursedetails.module';
     ProjectsModule,
     DatabaseModule,
     CoursedetailsModule,
+    CategoriesModule,
+    TopicsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
