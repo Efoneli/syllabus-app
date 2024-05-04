@@ -13,14 +13,26 @@ interface NavbarProps {
 interface Category {
   name: string;
   slug: string;
+  categoryId: number;
+}
+
+interface Course {
+ id: number;
+  name: string;
+  categoryId: number;
 }
 
 function Navbar({ children }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(
+    null
+  );
   const [categories, setCategories] = useState<Category[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
+
+
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -34,8 +46,18 @@ function Navbar({ children }: NavbarProps) {
     setIsCategoryOpen(!isCategoryOpen);
   };
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category: Category) => {
     setSelectedCategory(category);
+
+    axios
+    .get<Course[]>(`http://localhost:3030/courses?categoryId=${category.categoryId}`)
+    .then((response) => {
+      setCourses(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching courses:", error);
+    });
+
     toggleCategoryMenu(); // Close the category dropdown after selecting an option
   };
 
@@ -208,7 +230,7 @@ function Navbar({ children }: NavbarProps) {
                     <Link
                       href={`/Dashboard/categories/${category.slug}`}
                       passHref
-                      onClick={() => handleCategoryChange("frontend")}
+                      onClick={() => handleCategoryChange(category)}
                       className="block px-4 py-2 text-sm text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-600"
                     >
                       {category.name}
