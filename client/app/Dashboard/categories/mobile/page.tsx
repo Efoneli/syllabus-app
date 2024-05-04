@@ -14,6 +14,7 @@ const mobileLanguages = [
         {
           "title": "Flutter",
                     "link": '/Dashboard/categories/mobile/react',
+                    "prerequisites": "JS",
           "linkToDocs": "https://flutter.dev/docs/get-started/install",
           "videoUrl": "https://www.youtube.com/watch?v=lhBdarHuPak",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png",
@@ -22,6 +23,7 @@ const mobileLanguages = [
         {
           "title": "Swift",
                     "link": '/Dashboard/categories/mobile/react',
+                    "prerequisites": "JS",
           "linkToDocs": "https://swift.org/documentation/",
           "videoUrl": "https://www.youtube.com/watch?v=5b91dFhZz0g",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Swift_logo.svg",
@@ -30,6 +32,7 @@ const mobileLanguages = [
         {
           "title": "Kotlin",
                     "link": '/Dashboard/categories/mobile/react',
+                    "prerequisites": "JS",
           "linkToDocs": "https://kotlinlang.org/docs/home.html",
           "videoUrl": "https://www.youtube.com/watch?v=H_oGi8uuDpA",
           "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/Kotlin_Icon.png",
@@ -46,10 +49,10 @@ const mobileLanguages = [
     
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {mobileLanguages.map((language, index) => (
-    <div className='border rounded-md p-6'> 
-                 <img src={language.imageUrl} alt={language.title} height={200} width={200} className="" />
+    <div key={index} className='border rounded-md p-6 flex flex-col items-center justify-center'> 
+    <Link href={language.link} className="">
+    <img src={language.imageUrl} alt={language.title} height={200} width={200} className="" />
     
-    <Link href={language.link} key={index} className="">
     <h2 className="text-xl text-white font-semibold mb-2">{language.title}</h2>
     <p className="text-gray-700 mt-8">{language.prerequisites}</p>
     

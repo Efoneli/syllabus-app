@@ -19,16 +19,16 @@ const backendLanguages = [
     {
       "title": "Django",
       "link": '/Dashboard/categories/backend/nest',
-            "prerequisites": "Node js, JS",
+            "prerequisites": "Python",
       "linkToDocs": "https://docs.djangoproject.com/en/3.2/",
       "imageUrl": "https://www.djangoproject.com/s/img/logos/django-logo-negative.png",
     },
     {
       "title": "Node.js",
       "link": '/Dashboard/categories/backend/nest',
-            "prerequisites": "Node js, JS",
+            "prerequisites": "JS",
       "linkToDocs": "https://nodejs.org/en/docs/",
-      "imageUrl": "https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png",
     }
   ]
   
@@ -39,11 +39,11 @@ const backendLanguages = [
 
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   {backendLanguages.map((language, index) => (
-    <div className='border rounded-md p-6'> 
+    <div key={index} className='border rounded-md p-6 flex flex-col items-center justify-center'> 
+    <Link href={language.link} className="">
     <img src={language.imageUrl} alt={language.title} height={200} width={200} className="" />
 
-    <Link href={language.link} key={index} className="">
-      <h2 className="text-xl text-white font-semibold mb-2">{language.title}</h2>
+\      <h2 className="text-xl text-white font-semibold mb-2">{language.title}</h2>
       <p className="text-gray-700">{language.prerequisites}</p>
     
     </Link>
