@@ -1,26 +1,46 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { EntityManager, Repository } from 'typeorm';
+import { Topic } from './entities/topic.entity';
 
 @Injectable()
 export class TopicsService {
-  create(createTopicDto: CreateTopicDto) {
-    return 'This action adds a new topic';
+  constructor(
+    @InjectRepository(Topic)
+    private readonly topicsRepository: Repository<Topic>,
+    private readonly entityManager: EntityManager,
+  ) {}
+
+  async create(createTopicDto: CreateTopicDto) {
+    const topic = new Topic(createTopicDto);
+    await this.entityManager.save(topic);
+    return ' New Topic added';
   }
 
   findAll() {
-    return `This action returns all topics`;
+    return this.topicsRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} topic`;
+    return this.topicsRepository.findOneBy({ id });
   }
 
-  update(id: number, updateTopicDto: UpdateTopicDto) {
-    return `This action updates a #${id} topic`;
+  async update(id: number, updateTopicDto: UpdateTopicDto) {
+    const topic = await this.topicsRepository.findOneBy({ id });
+    topic.docsUrl = updateTopicDto.docsUrl ?? topic.docsUrl;
+    topic.title = updateTopicDto.title ?? topic.title;
+    topic.imageUrl = updateTopicDto.imageUrl ?? topic.imageUrl;
+    topic.videoUrl = updateTopicDto.videoUrl ?? topic.videoUrl;
+    topic.content = updateTopicDto.content ?? topic.content;
+
+    this.entityManager.save(topic);
+
+    return topic;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} topic`;
+  async remove(id: number) {
+    await this.topicsRepository.delete(id);
   }
 }

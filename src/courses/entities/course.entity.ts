@@ -1,6 +1,7 @@
 import { Category } from 'src/categories/entities/category.entity';
 import { AbstractEntity } from 'src/database/abstract.module';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Topic } from 'src/topics/entities/topic.entity';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Course extends AbstractEntity<Course> {
@@ -17,7 +18,15 @@ export class Course extends AbstractEntity<Course> {
   @Column()
   prerequisites: string;
 
+  // @Column()
+  // imageUrl: string;
+
   @ManyToOne(() => Category, category => category.courses)
   @JoinColumn()
-  category: Category;
+  category: Category; 
+  
+
+  @OneToMany(() => Topic, (topic) => topic.course, { onDelete: 'CASCADE' })
+  topics: Topic[];
+  
 }
