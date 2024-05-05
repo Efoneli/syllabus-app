@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Dashboard/categories/frontend/react"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Dashboard/categories/frontend/react", "app/Dashboard/categories/[id]/courses/[courseId]"],
   "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import Image from "next/image";
 import avatar from "../assests/Avatar.png";
 import Link from "next/link";
@@ -11,12 +11,13 @@ interface NavbarProps {
 }
 
 interface Category {
+  id: number;
   name: string;
   slug: string;
   categoryId: number;
 }
 
-interface Course {
+export interface Course {
  id: number;
   name: string;
   categoryId: number;
@@ -33,7 +34,6 @@ function Navbar({ children }: NavbarProps) {
   const [courses, setCourses] = useState<Course[]>([]);
 
 
-
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -47,11 +47,14 @@ function Navbar({ children }: NavbarProps) {
   };
 
   const handleCategoryChange = (category: Category) => {
+   
     setSelectedCategory(category);
 
     axios
-    .get<Course[]>(`http://localhost:3030/courses?categoryId=${category.categoryId}`)
+    .get<Course[]>(`http://localhost:3030/courses?categoryId=${category.id}`)
+
     .then((response) => {
+      // console.log("courses Data:", response.data);
       setCourses(response.data);
     })
     .catch((error) => {
@@ -61,18 +64,18 @@ function Navbar({ children }: NavbarProps) {
     toggleCategoryMenu(); // Close the category dropdown after selecting an option
   };
 
-  // Make a GET request
-  axios
-    .get("http://localhost:3030/categories")
-    .then((response) => {
-      setCategories(response.data)
-      console.log("Data:", response.data);
-    })
-    .catch((error) => {
-      // Handle error
-      console.error("Error:", error);
-    }, []);
-
+  useEffect(() => {
+    axios
+      .get("http://localhost:3030/categories")
+      .then((response) => {
+        setCategories(response.data);
+        console.log("category Data:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+  
   return (
     <div>
       <nav className="fixed top-0 z-50 w-full bg-gray-800 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -88,11 +91,7 @@ function Navbar({ children }: NavbarProps) {
                 <OpenSidebarSvg />
               </button>
               <a href="https://flowbite.com" className="flex ms-2 md:me-24">
-                {/* <Image
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="h-8 me-3"
-                  alt="FlowBite Logo"
-                /> */}
+                
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   WDAT
                 </span>
@@ -228,7 +227,7 @@ function Navbar({ children }: NavbarProps) {
                 {categories.map((category, index) => (
                   <li key={index}>
                     <Link
-                      href={`/Dashboard/categories/${category.slug}`}
+                      href={`/dashboard/categories/${category.name.toLowerCase()}`}
                       passHref
                       onClick={() => handleCategoryChange(category)}
                       className="block px-4 py-2 text-sm text-gray-200 rounded-lg dark:text-white hover:bg-gray-700 dark:hover:bg-gray-600"

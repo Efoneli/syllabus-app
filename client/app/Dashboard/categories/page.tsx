@@ -1,7 +1,7 @@
 export default function Page() {
     return(
         <div>
-            hwllo
+            categries here
         </div>
     )
 }
