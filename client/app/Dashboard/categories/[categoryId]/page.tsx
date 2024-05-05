@@ -59,7 +59,7 @@ export default function CategoryDetails({ params }: {
       <h1 className="text-3xl mb-4">{params.categoryId.toUpperCase()}</h1>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course, index) => (
-          <div key={index} className="border rounded-md p-6 flex flex-col items-center justify-center">
+          <div key={index} className="border rounded-md p-6 flex flex-col items-center justify-center hover:scale-105">
             <button onClick={() => handleCourseChange(course)} className="">
               <img src={course.imageUrl} alt={course.title} height={200} width={200} className="" />
               <h2 className="text-xl text-white font-semibold mb-2">{course.title}</h2> 
