@@ -18,8 +18,8 @@ export class Course extends AbstractEntity<Course> {
   @Column()
   prerequisites: string;
 
-  // @Column()
-  // imageUrl: string;
+  @Column({nullable: true})
+  imageUrl: string;
 
   @ManyToOne(() => Category, category => category.courses)
   @JoinColumn()

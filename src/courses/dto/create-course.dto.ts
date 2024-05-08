@@ -4,5 +4,5 @@ export class CreateCourseDto {
     title: string;
     description: string;
     prerequisites: string;
-    // imageUrl: string;
+    imageUrl: string;
 }
