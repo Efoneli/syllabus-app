@@ -18,6 +18,7 @@ export class AuthorizationGuard implements CanActivate {
     this.AUTH0_AUDIENCE = this.configService.get('AUTH0_AUDIENCE');
     this.AUTH0_DOMAIN = this.configService.get('AUTH0_DOMAIN');
   }
+  
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const req = context.getArgByIndex(0);
     const res = context.getArgByIndex(1);
@@ -43,7 +44,8 @@ export class AuthorizationGuard implements CanActivate {
  
        req.user = {
         sub: decodedToken.sub,
-        permissions: decodedToken.permissions || []
+        permissions: decodedToken.permissions || [],
+        roles: decodedToken[`${this.AUTH0_DOMAIN}/roles`] || []
       };
       return true;
     } catch (error) {
