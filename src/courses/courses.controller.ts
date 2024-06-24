@@ -54,8 +54,6 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { PermissionsGuard } from '../authorization/permissions/permissions.guard';
 import { AuthorizationGuard } from './../authorization/authorization.guard';
-import { RolesGuard } from './../authorization/roles/roles.guard';
-import { Roles } from './../authorization/roles/roles.decorator';
 
 @Controller('courses')
 export class CoursesController {

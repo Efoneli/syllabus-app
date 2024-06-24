@@ -10,6 +10,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { TopicsModule } from './topics/topics.module';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { UsersModule } from './users/users.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UsersModule } from './users/users.module';
     TopicsModule,
     AuthorizationModule,
     UsersModule,
+    FeedbackModule,
   ],
   controllers: [AppController],
   providers: [AppService],

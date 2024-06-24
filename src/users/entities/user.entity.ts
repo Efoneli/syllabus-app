@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Feedback } from 'src/feedback/entities/feedback.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class User {
@@ -16,4 +17,7 @@ export class User {
 
   @Column({ default: false })
   isAdmin: boolean;
+
+  @OneToMany(() => Feedback, (feedback) => feedback.user)
+  feedback: Feedback[];
 }
