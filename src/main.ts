@@ -24,15 +24,17 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   app.enableCors({
-    origin: 'https://syllabus-app.vercel.app/',
-    // origin: 'http://localhost:3000/', 
-    credentials: true,
+    origin: 'https://syllabus-app.vercel.app/', // Specify your frontend domain
+    credentials: true, // Allow credentials (e.g., cookies, authorization headers)
   });
 
+  // Use the PORT provided by Railway or default to 3030 for local development
   const port = process.env.PORT || 3030;
 
-  await app.listen(port);
+  // Listen on the specified port and on all network interfaces (0.0.0.0)
+  await app.listen(port, '0.0.0.0');
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
+
